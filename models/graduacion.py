@@ -440,20 +440,3 @@ class GraduacionPaciente(models.Model):
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     graduacion_ids = fields.One2many('optica.graduacion', 'paciente_id', string='Graduaciones')
-
-def action_crear_cotizacion(self):
-    """Crea una cotización desde la graduación"""
-    self.ensure_one()
-    
-    cotizacion = self.env['optometria.cotizador'].create({
-        'graduacion_id': self.id,
-    })
-    
-    return {
-        'type': 'ir.actions.act_window',
-        'name': 'Cotizador',
-        'res_model': 'optometria.cotizador',
-        'res_id': cotizacion.id,
-        'view_mode': 'form',
-        'target': 'current',
-    }
