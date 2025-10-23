@@ -1,7 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_optica_graduacion_user,Optica Graduacion - User,model_optica_graduacion,base.group_user,1,1,1,0
 access_optica_graduacion_admin,Optica Graduacion - Admin,model_optica_graduacion,base.group_system,1,1,1,1
-access_laboratorio_user,laboratorio.user,model_optometria_laboratorio,base.group_user,1,1,1,1
-access_serie_rx_user,serie.rx.user,model_optometria_serie_rx,base.group_user,1,1,1,1
-access_cotizador_user,cotizador.user,model_optometria_cotizador,base.group_user,1,1,1,1
-access_cotizador_linea_user,cotizador.linea.user,model_optometria_cotizador_linea,base.group_user,1,1,1,1
