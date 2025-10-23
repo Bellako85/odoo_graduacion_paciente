@@ -2,15 +2,22 @@
     "name": "Graduación de Pacientes",
     "version": "1.2",
     "category": "Optometry",
-    "summary": "Registra las graduaciones de pacientes",
+    "summary": "Modulo de optometria para las graduaciones de los pacientes integra una pestanaña de diagostico para astigmatismo trasposicion notacion bicilindrica calcula distancia al vertice",
     "author": "Christian Torres PeeWee",
     "license": "LGPL-3",
     "depends": ["base", "web", "contacts"],
     "data": [
-        "security/ir.model.access.csv",
-        "views/graduacion_view.xml",
-        "reports/report_historia_templates.xml",
-        "reports/report_historia_action.xml",
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'data/series_rx_data.xml',
+        'views/graduacion_view.xml',
+        'views/laboratorio_views.xml',
+        'views/serie_rx_views.xml',
+        'views/product_views.xml',
+        'views/cotizador_views.xml',
+        'views/menu_views.xml',
+        'report/graduacion_report.xml',
+   
     ],
     "assets": {
         "web.assets_backend": [
