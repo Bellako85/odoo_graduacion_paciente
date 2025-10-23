@@ -10,11 +10,7 @@
           <button name="action_imprimir_historia_clinica"
                   string="Imprimir Historia Clínica" 
                   type="object"
-                  class="btn-primary mi-btn shadow-effect"/>
-          <button name="action_crear_cotizacion" 
-                  string="💰 Cotizar Lentes" 
-                  type="object" 
-                  class="btn-success mi-btn shadow-effect"/>
+                  class="btn-primary mi-btn shadow-effect"/>          
           <button name="action_calcular_distancia_vertice" 
                   type="object" 
                   string="Calcular Vertex LC" 
