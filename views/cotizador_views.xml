@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- FORMULARIO -->
+    <record id="view_cotizador_form" model="ir.ui.view">
+        <field name="name">optometria.cotizador.form</field>
+        <field name="model">optometria.cotizador</field>
+        <field name="arch" type="xml">
+            <form string="Cotizador">
+                <header>
+                    <button name="buscar_productos" 
+                            string="🔍 Buscar Productos Compatibles" 
+                            type="object" 
+                            class="oe_highlight btn-primary"
+                            attrs="{'invisible': [('state', '=', 'cotizado')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="graduacion_id" 
+                                   options="{'no_create': True}"/>
+                            <field name="paciente_id" readonly="1"/>
+                            <field name="fecha"/>
+                        </group>
+                        <group>
+                            <field name="total_productos_encontrados" 
+                                   readonly="1"
+                                   attrs="{'invisible': [('total_productos_encontrados', '=', 0)]}"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="🔍 Filtros de Búsqueda">
+                            <group>
+                                <group string="Proveedores">
+                                    <field name="laboratorio_ids" 
+                                           widget="many2many_tags"
+                                           placeholder="Dejar vacío = buscar en todos"/>
+                                </group>
+                                <group string="Características del Lente">
+                                    <field name="tipo_lente_buscar"/>
+                                    <field name="material_buscar"/>
+                                </group>
+                            </group>
+                            
+                            <group>
+                                <div class="alert alert-info" role="alert" style="margin-top: 20px;">
+                                    <strong>ℹ️ Información:</strong> Los productos se filtrarán automáticamente 
+                                    según las series recomendadas y los rangos de graduación del paciente.
+                                </div>
+                            </group>
+                        </page>
+                        
+                        <page string="📋 Productos Disponibles">
+                            <field name="linea_ids" nolabel="1">
+                                <tree string="Resultados" 
+                                      decoration-success="seleccionado == True"
+                                      decoration-muted="seleccionado == False"
+                                      editable="bottom">
+                                    
+                                    <field name="seleccionado" widget="boolean_toggle"/>
+                                    <field name="producto_id" readonly="1"/>
+                                    <field name="laboratorio_id" readonly="1"/>
+                                    <field name="serie" readonly="1"/>
+                                    <field name="material" readonly="1"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio" 
+                                           widget="monetary" 
+                                           readonly="1"/>
+                                    <field name="subtotal" 
+                                           widget="monetary" 
+                                           readonly="1"
+                                           sum="Total"/>
+                                    
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- LISTA -->
+    <record id="view_cotizador_tree" model="ir.ui.view">
+        <field name="name">optometria.cotizador.tree</field>
+        <field name="model">optometria.cotizador</field>
+        <field name="arch" type="xml">
+            <tree string="Cotizaciones">
+                <field name="name"/>
+                <field name="fecha"/>
+                <field name="paciente_id"/>
+                <field name="total_productos_encontrados"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- ACCIÓN -->
+    <record id="action_cotizador" model="ir.actions.act_window">
+        <field name="name">Cotizador de Lentes</field>
+        <field name="res_model">optometria.cotizador</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear primera cotización
+            </p>
+            <p>
+                Cotiza lentes para tus pacientes basándose en su graduación.
+            </p>
+        </field>
+    </record>
+    
+</odoo>
