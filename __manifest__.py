@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Healthcare',
     'summary': 'Módulo para gestión de graduaciones oftalmológicas y cotizador',
-    'author': 'BellaKo85',
+    'author': 'Christian torres peewee',
     'depends': ['base', 'web', 'mail', 'product', 'sale'],
     'data': [
         'security/ir.model.access.csv',
