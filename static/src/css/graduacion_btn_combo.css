@@ -1,0 +1,230 @@
+/* ===== BOTONES PRINCIPALES ===== */
+/* Botón Imprimir Historia Clínica */
+.mi-btn {
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #dbdbdb 0%, #7c3aed 100%);
+  box-shadow: 0 8px 20px rgba(37,99,235,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  -webkit-appearance: none;
+}
+
+/* Botón Nuevo en vista lista (Odoo 17) */
+button.o_list_add,
+.o_control_panel .btn-primary:not(.dropdown-toggle) {
+  border: none !important;
+  color: white !important;
+  padding: 12px 18px !important;
+  cursor: pointer !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.12) !important;
+  transition: all 0.12s ease !important;
+}
+
+/* ===== EFECTOS HOVER/FOCUS PARA BOTONES ===== */
+.mi-btn.shadow-effect:hover,
+.mi-btn.shadow-effect:focus,
+button.o_list_add:hover,
+button.o_list_add:focus,
+.o_control_panel .btn-primary:not(.dropdown-toggle):hover,
+.o_control_panel .btn-primary:not(.dropdown-toggle):focus {
+  transform: translateY(-3px) !important;
+  box-shadow: 0px 14px 32px rgba(0, 0, 0, 0.22) !important;
+  filter: brightness(1.03) !important;
+  outline: none !important;
+}
+
+.mi-btn.shadow-effect:focus,
+button.o_list_add:focus,
+.o_control_panel .btn-primary:not(.dropdown-toggle):focus {
+  box-shadow: 0 0 0 4px rgba(124,58,237,0.12), 0px 14px 32px rgba(0,0,0,0.22) !important;
+}
+
+/* ===== KANBAN FLOW VIOLENTO SIN BOTÓN ===== */
+.kanban-flow-violento {
+    min-height: 150px !important;
+    border: none !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    background: linear-gradient(135deg, #b8bac2  0%, #f8fafc 100%) !important;
+    overflow: hidden !important;
+    margin-bottom: 12px !important;
+    cursor: pointer !important;
+}
+
+/* EFECTO HOVER EXPLOSIVO */
+.kanban-flow-violento:hover {
+    transform: translateY(-10px) scale(1.04) !important;
+    box-shadow: 0 30px 60px rgba(37, 99, 235, 0.35) !important;
+    border: 3px solid #2563eb !important;
+}
+
+/* FOOTER SIMPLE */
+.kanban-footer-flow {
+    padding: 12px 20px !important;
+    border-top: 1px solid #e2e8f0 !important;
+    text-align: center !important;
+    background: #f8fafc !important;
+}
+
+.click-hint {
+    font-size: 11px !important;
+    color: #64748b !important;
+    font-style: italic !important;
+}
+
+.kanban-flow-violento:hover .click-hint {
+    color: #2563eb !important;
+    font-weight: 600 !important;
+}
+
+/* HEADER CON GRADIENTE ANIMADO */
+.kanban-header-flow {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+    color: white !important;
+    padding: 20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.kanban-header-flow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.8s ease;
+}
+
+.kanban-flow-violento:hover .kanban-header-flow::before {
+    left: 100%;
+}
+
+.kanban-paciente {
+    font-weight: 800 !important;
+    font-size: 18px !important;
+    margin-bottom: 5px !important;
+}
+
+.kanban-fecha {
+    font-size: 14px !important;
+    opacity: 0.9 !important;
+}
+
+/* CUERPO DE LA TARJETA */
+.kanban-body-flow {
+    padding: 12px !important;
+}
+
+.ojo-section {
+    margin-bottom: 8px !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    background: #f8fafc !important;
+}
+
+.ojo-derecho {
+    border-left: 4px solid #2563eb !important;
+}
+
+.ojo-izquierdo {
+    border-left: 4px solid #7c3aed !important;
+}
+
+.ojo-title {
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+}
+
+.ojo-datos {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 5px !important;
+    font-size: 12px !important;
+}
+
+.dato span {
+    font-weight: 600 !important;
+    color: #475569 !important;
+}
+
+.info-adicional {
+    background: linear-gradient(135deg, #f3f0ff 0%, #e0e7ff 100%) !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+}
+
+.info-item {
+    margin-bottom: 5px !important;
+}
+
+.info-item span {
+    font-weight: 600 !important;
+    color: #4f46e5 !important;
+}
+
+/* ANIMACIÓN DE ENTRADA */
+@keyframes kanbanSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.kanban-flow-violento {
+    animation: kanbanSlideIn 0.6s ease-out !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .kanban-flow-violento {
+        min-height: 320px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .ojo-datos {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .kanban-body-flow {
+        padding: 15px !important;
+    }
+}
+
+/* ===== MEJORAS RESPONSIVE ===== */
+@media (max-width: 420px) {
+  /* Botones responsive */
+  .mi-btn { 
+    padding: 10px 14px !important; 
+    font-size: 14px !important; 
+    border-radius: 10px !important; 
+  }
+  
+  button.o_list_add,
+  .o_control_panel .btn-primary:not(.dropdown-toggle) {
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+  }
+}

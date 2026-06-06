@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_optica_graduacion_user,Optica Graduacion - User,model_optica_graduacion,base.group_user,1,1,1,0
+access_optica_graduacion_admin,Optica Graduacion - Admin,model_optica_graduacion,base.group_system,1,1,1,1
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9836951eb5224b21678fecf5b2aee1233855d215

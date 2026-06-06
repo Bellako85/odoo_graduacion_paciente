@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- FORM de optica.graduacion CORREGIDO -->
+  <record id="view_graduacion_form" model="ir.ui.view">
+    <field name="name">optica.graduacion.form</field>
+    <field name="model">optica.graduacion</field>
+    <field name="arch" type="xml">
+      <form string="Historia Clínica - Examen Visual">
+        <header>
+          <button name="action_imprimir_historia_clinica"
+                  string="Imprimir Historia Clínica" 
+                  type="object"
+<<<<<<< HEAD
+                  class="btn-primary mi-btn shadow-effect"/>                                                                
+=======
+                  class="btn-primary mi-btn shadow-effect"/>          
+>>>>>>> 9836951eb5224b21678fecf5b2aee1233855d215
+          <button name="action_calcular_distancia_vertice" 
+                  type="object" 
+                  string="Calcular Vertex LC" 
+                  class="btn-default mi-btn shadow-effect"/>
+          <button name="action_mostrar_notacion_bicilindrica" 
+                  type="object" 
+                  string="Notación Bicilíndrica" 
+                  class="btn-default mi-btn shadow-effect"/>
+        </header>
+       
+        <sheet>
+          <notebook>
+
+            <!-- PESTAÑA 1: REFRACCIÓN -->
+            <page string="Refracción">
+              <!-- DATOS GENERALES -->
+              <group string="Datos Generales">
+                <group>
+                  <field name="paciente_id"/>
+                  <field name="fecha"/>
+                  <field name="profesional"/>
+                </group>
+              </group>
+              
+              <!-- Diagnóstico y Tipo de Lente -->
+              <group string="Diagnóstico Principal">
+                <field name="diagnostico"/>
+                <field name="tipo_lente"/>
+              </group>
+              
+              <!-- Rx en dos columnas -->
+              <group>
+                <group string="Ojo Derecho">
+                  <field name="ojo_derecho_esfera" string="ESF" class="graduacion-field"/>
+                  <field name="ojo_derecho_cilindro" string="CIL" class="graduacion-field"/>
+                  <field name="ojo_derecho_eje" string="EJE" class="graduacion-field"/>
+                  <field name="ojo_derecho_av" string="AV" class="graduacion-field"/>
+                </group>
+
+                <group string="Ojo Izquierdo">
+                  <field name="ojo_izquierdo_esfera" string="ESF" class="graduacion-field"/>
+                  <field name="ojo_izquierdo_cilindro" string="CIL" class="graduacion-field"/>
+                  <field name="ojo_izquierdo_eje" string="EJE" class="graduacion-field"/>
+                  <field name="ojo_izquierdo_av" string="AV" class="graduacion-field"/>
+                </group>
+              </group>
+              
+              <!-- Datos adicionales -->
+              <group string="Datos Adicionales">
+                <group>
+                  <field name="adicion" string="ADD" class="graduacion-field"/>
+                  <field name="distancia_nasopupilar_od" string="DNP OD" class="graduacion-field"/>
+                  <field name="distancia_interpupilar" string="DIP" class="graduacion-field"/>
+                  <field name="distancia_nasopupilar_oi" string="DNP OI" class="graduacion-field"/>
+                  <field name="altura_centro_optico" string="Altura Centro Óptico" class="graduacion-field"/>
+                </group>
+              </group>
+
+              <!-- Observaciones - CON COLSPAN PARA ANCHO COMPLETO -->
+              <group colspan="2" string="Observaciones y Recomendaciones">
+                  <field name="observaciones" nolabel="1" 
+                    class="graduacion-field"
+                    placeholder="Escriba aquí las observaciones y recomendaciones para el paciente..."
+                    style="min-height: 120px; width: 100%;"/>
+              </group>
+             </page> 
+
+            <!-- PESTAÑA 2: DIAGNÓSTICO AUTOMÁTICO -->
+            <page string="Diagnóstico Automático">
+                
+                <!-- DIAGNÓSTICO DETALLADO POR OJO -->
+                <group string="Diagnóstico de Astigmatismo" colspan="2">
+                    <group>
+                        <group string="Ojo Derecho">
+                            <div class="o_form_label">Tipo de Astigmatismo</div>
+                            <field name="diagnostico_od_detallado" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                            
+                            <div class="o_form_label">Formación de Focos</div>
+                            <field name="formacion_focos_od" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                            
+                            <div class="o_form_label">Orientación del Eje</div>
+                            <field name="orientacion_od" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                        </group>
+                        
+                        <group string="Ojo Izquierdo">
+                            <div class="o_form_label">Tipo de Astigmatismo</div>
+                            <field name="diagnostico_oi_detallado" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                            
+                            <div class="o_form_label">Formación de Focos</div>
+                            <field name="formacion_focos_oi" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                            
+                            <div class="o_form_label">Orientación del Eje</div>
+                            <field name="orientacion_oi" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                        </group>
+                    </group>
+                </group>
+            
+                <!-- SERIES PARA LABORATORIO -->
+                <group string="Series (Para Laboratorio)" colspan="2">
+                    <group>
+                        <group string="Serie OD">
+                            <div class="o_form_label">Para laboratorio - Ojo Derecho</div>
+                            <field name="serie_recomendada_od" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                        </group>
+                        
+                        <group string="Serie OI">
+                            <div class="o_form_label">Para laboratorio - Ojo Izquierdo</div>
+                            <field name="serie_recomendada_oi" readonly="1" nolabel="1" style="width: 100%; min-height: 40px;"/>
+                        </group>
+                    </group>
+                </group>
+            
+                <!-- TRANSPOSICIÓN -->
+                <group string="Transposición de Lentes" colspan="2">
+                    <group>
+                        <group string="OD Transpuesto">
+                            <field name="od_esfera_trans" string="ESF" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                            <field name="od_cilindro_trans" string="CIL" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                            <field name="od_eje_trans" string="EJE" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                        </group>
+                        
+                        <group string="OI Transpuesto">
+                            <field name="oi_esfera_trans" string="ESF" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                            <field name="oi_cilindro_trans" string="CIL" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                            <field name="oi_eje_trans" string="EJE" readonly="1" class="graduacion-field" style="width: 100%;"/>
+                        </group>
+                    </group>
+                </group>
+            
+            </page>
+            
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- MANTENER TUS VISTAS EXISTENTES QUE YA FUNCIONAN -->
+  
+  <!-- Vista Kanban CORREGIDA - SIN BOTÓN -->
+  <record id="view_graduacion_kanban" model="ir.ui.view">
+    <field name="name">optica.graduacion.kanban</field>
+    <field name="model">optica.graduacion</field>
+    <field name="arch" type="xml">
+        <kanban string="Graduaciones">
+            <!-- DECLARAR CAMPOS QUE SE USARÁN -->
+            <field name="paciente_id"/>
+            <field name="fecha"/>
+            <field name="ojo_derecho_esfera"/>
+            <field name="ojo_derecho_cilindro"/>
+            <field name="ojo_derecho_eje"/>
+            <field name="ojo_derecho_av"/>
+            <field name="ojo_izquierdo_esfera"/>
+            <field name="ojo_izquierdo_cilindro"/>
+            <field name="ojo_izquierdo_eje"/>
+            <field name="ojo_izquierdo_av"/>
+            <field name="diagnostico"/>
+            <field name="tipo_lente"/>
+            <field name="profesional"/>
+            
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click kanban-flow-violento">
+                        <!-- HEADER -->
+                        <div class="kanban-header-flow">
+                            <div class="kanban-paciente">
+                                <strong t-esc="record.paciente_id.value or 'Sin paciente'"/>
+                            </div>
+                            <div class="kanban-fecha">
+                                <span t-esc="record.fecha.value or 'Sin fecha'"/>
+                            </div>
+                        </div>
+                        
+                        <!-- CUERPO -->
+                        <div class="kanban-body-flow">
+                            <!-- OJO DERECHO -->
+                            <div class="ojo-section ojo-derecho">
+                                <div class="ojo-title">👁️ OJO DERECHO</div>
+                                <div class="ojo-datos">
+                                    <div class="dato"><span>ESF:</span> <span t-esc="record.ojo_derecho_esfera.value or '--'"/></div>
+                                    <div class="dato"><span>CIL:</span> <span t-esc="record.ojo_derecho_cilindro.value or '--'"/></div>
+                                    <div class="dato"><span>EJE:</span> <span t-esc="record.ojo_derecho_eje.value or '--'"/></div>
+                                    <div class="dato"><span>AV:</span> <span t-esc="record.ojo_derecho_av.value or '--'"/></div>
+                                </div>
+                            </div>
+                            
+                            <!-- OJO IZQUIERDO -->
+                            <div class="ojo-section ojo-izquierdo">
+                                <div class="ojo-title">👁️ OJO IZQUIERDO</div>
+                                <div class="ojo-datos">
+                                    <div class="dato"><span>ESF:</span> <span t-esc="record.ojo_izquierdo_esfera.value or '--'"/></div>
+                                    <div class="dato"><span>CIL:</span> <span t-esc="record.ojo_izquierdo_cilindro.value or '--'"/></div>
+                                    <div class="dato"><span>EJE:</span> <span t-esc="record.ojo_izquierdo_eje.value or '--'"/></div>
+                                    <div class="dato"><span>AV:</span> <span t-esc="record.ojo_izquierdo_av.value or '--'"/></div>
+                                </div>
+                            </div>
+                            
+                            <!-- INFO ADICIONAL -->
+                            <div class="info-adicional">
+                                <div class="info-item"><span>👨‍⚕️ Profesional:</span> <span t-esc="record.profesional.value or 'No especificado'"/></div>
+                                <div class="info-item"><span>🔍 Diagnóstico:</span> <span t-esc="record.diagnostico.value or 'No especificado'"/></div>
+                                <div class="info-item"><span>👓 Tipo Lente:</span> <span t-esc="record.tipo_lente.value or 'No especificado'"/></div>
+                            </div>
+                        </div>
+                        
+                        <!-- FOOTER SIMPLE SIN BOTÓN -->
+                        <div class="kanban-footer-flow">
+                            <div class="click-hint">👆 Haz click para ver detalles</div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+  </record>
+
+  <!-- Vista tipo árbol para optica.graduacion -->
+  <record id="view_graduacion_tree" model="ir.ui.view">
+    <field name="name">optica.graduacion.tree</field>
+    <field name="model">optica.graduacion</field>
+    <field name="arch" type="xml">
+      <tree string="Graduaciones">
+        <field name="paciente_id"/>
+        <field name="ojo_derecho_esfera"/>
+        <field name="ojo_derecho_cilindro"/>
+        <field name="ojo_derecho_eje"/>
+        <field name="ojo_izquierdo_esfera"/>
+        <field name="ojo_izquierdo_cilindro"/>
+        <field name="ojo_izquierdo_eje"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Acción y menú principal -->
+  <record id="action_graduacion" model="ir.actions.act_window">
+    <field name="name">Graduaciones</field>
+    <field name="res_model">optica.graduacion</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+
+  <menuitem id="menu_optica_root" name="Óptica" sequence="10"/>
+  <menuitem id="menu_graduaciones" name="Graduaciones"
+            parent="menu_optica_root" action="action_graduacion" sequence="20"/>
+
+  <!-- Pestaña en Contactos: abre SIEMPRE este form -->
+  <record id="view_res_partner_form_inherit_graduaciones" model="ir.ui.view">
+    <field name="name">res.partner.form.inherit.graduaciones</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Graduaciones">
+          <field name="graduacion_ids"
+                 context="{'default_paciente_id': active_id,
+                           'form_view_ref': 'odoo_graduacion_paciente.view_graduacion_form'}">
+            <tree string="Graduaciones" decoration-muted="not fecha">
+              <field name="fecha"/>
+              <field name="ojo_derecho_esfera"/>
+              <field name="ojo_derecho_cilindro"/>
+              <field name="ojo_derecho_eje"/>
+              <field name="ojo_izquierdo_esfera"/>
+              <field name="ojo_izquierdo_cilindro"/>
+              <field name="ojo_izquierdo_eje"/>
+            </tree>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

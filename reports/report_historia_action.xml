@@ -1,0 +1,12 @@
+<odoo>
+  <record id="action_report_graduacion_paciente" model="ir.actions.report">
+    <field name="name">Historia clínica</field>
+    <field name="model">optica.graduacion</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">odoo_graduacion_paciente.report_historia_document</field>
+    <field name="binding_model_id" ref="model_optica_graduacion"/>
+    <field name="print_report_name">
+      'Historia_%s' % (object.paciente_id.display_name.replace('/', '_'))
+    </field>
+  </record>
+</odoo>
