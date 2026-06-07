@@ -440,7 +440,3 @@ class GraduacionPaciente(models.Model):
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     graduacion_ids = fields.One2many('optica.graduacion', 'paciente_id', string='Graduaciones')
-<<<<<<< HEAD
-
-=======
->>>>>>> 9836951eb5224b21678fecf5b2aee1233855d215
