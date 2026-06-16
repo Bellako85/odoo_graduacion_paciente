@@ -1,10 +1,1 @@
-Dependencias
-Módulo base de Odoo (base, web)
-
-Tecnologías
-Python 3.x
-Odoo 14.0 o superior
-XML para vistas
-
-Autor
-BellaKo85
+Este modulo crea una aplicacion para llevar el registro de la ficha optometrica de los pacientes, la pestaña principal es para agregar los valores y la segunda del diagnostico automatico te dice si tiene astigmatismo miopico simple, compuesto, mixto, contra la regla etc,te da la graduacion transpuesta, botones de imprimir historia clinica, calcular vertex LC y notacion bicilindrica, cuenta con vista kaban con info en tarjetas de las dioptrias, el opto que ralizo el examen y diagnostico para una rapida previsualizacion y vista en lista, puede agregar un nuevo registro o si ya es paciente puede buscarlo por nombre, en la aplicacion de contactos dentro de la ficha del cliente crea un pestaña de graduaciones.
