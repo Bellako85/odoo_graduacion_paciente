@@ -10,11 +10,8 @@
           <button name="action_imprimir_historia_clinica"
                   string="Imprimir Historia Clínica" 
                   type="object"
-<<<<<<< HEAD
                   class="btn-primary mi-btn shadow-effect"/>                                                                
-=======
-                  class="btn-primary mi-btn shadow-effect"/>          
->>>>>>> 9836951eb5224b21678fecf5b2aee1233855d215
+        
           <button name="action_calcular_distancia_vertice" 
                   type="object" 
                   string="Calcular Vertex LC" 
