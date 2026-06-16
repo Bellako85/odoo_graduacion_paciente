@@ -19,7 +19,7 @@ class GraduacionPaciente(models.Model):
     fecha = fields.Date(string='Fecha de evaluación', default=fields.Date.context_today)
     profesional = fields.Many2one('res.users', string='Optometrista', default=lambda self: self.env.user)
 
-    # ✅ CAMPOS DE GRADUACIÓN
+   
     ojo_derecho_esfera = fields.Float(string='OD Esfera', digits=(8, 2))
     ojo_derecho_cilindro = fields.Float(string='OD Cilindro', digits=(8, 2))
     ojo_derecho_eje = fields.Integer(string='OD Eje')
@@ -54,7 +54,7 @@ class GraduacionPaciente(models.Model):
 
     observaciones = fields.Text(string='Observaciones')
 
-    # ✅ CAMPOS CALCULADOS PARA DIAGNÓSTICO AUTOMÁTICO
+    
     diagnostico_od_detallado = fields.Char(
         string='Diagnóstico OD Detallado', 
         compute='_compute_diagnostico_automatico',
@@ -86,7 +86,7 @@ class GraduacionPaciente(models.Model):
         store=True
     )
 
-    # ✅ CAMPOS PARA SERIES RECOMENDADAS
+    
     serie_recomendada_od = fields.Char(
         string='Serie OD', 
         compute='_compute_series_automaticas',
@@ -98,7 +98,7 @@ class GraduacionPaciente(models.Model):
         store=True
     )
 
-    # ✅ CAMPOS PARA TRANSPOSICIÓN
+   
     od_esfera_trans = fields.Float(string='OD Esf Trans', compute='_compute_transposicion')
     od_cilindro_trans = fields.Float(string='OD Cil Trans', compute='_compute_transposicion')
     od_eje_trans = fields.Integer(string='OD Eje Trans', compute='_compute_transposicion')
@@ -106,7 +106,7 @@ class GraduacionPaciente(models.Model):
     oi_cilindro_trans = fields.Float(string='OI Cil Trans', compute='_compute_transposicion')
     oi_eje_trans = fields.Integer(string='OI Eje Trans', compute='_compute_transposicion')
 
-    # ✅ CONFIGURACIÓN DE SERIES
+    
     SERIES_CONFIG = {
         'RX1': {
             'nombre': 'Primera Serie',
@@ -142,13 +142,13 @@ class GraduacionPaciente(models.Model):
             if rec.ojo_izquierdo_eje and not (0 <= rec.ojo_izquierdo_eje <= 180):
                 raise ValidationError('El eje del ojo izquierdo debe estar entre 0 y 180.')
 
-    # ✅ DIAGNÓSTICO AUTOMÁTICO
+    
     @api.depends('ojo_derecho_esfera', 'ojo_derecho_cilindro', 'ojo_derecho_eje',
                  'ojo_izquierdo_esfera', 'ojo_izquierdo_cilindro', 'ojo_izquierdo_eje')
     def _compute_diagnostico_automatico(self):
         """Calcula el diagnóstico automático para cada ojo"""
         for record in self:
-            # Diagnóstico OD
+            
             diag_od = record._analizar_astigmatismo_ojo(
                 record.ojo_derecho_esfera, record.ojo_derecho_cilindro, record.ojo_derecho_eje, 'OD'
             )
@@ -156,7 +156,7 @@ class GraduacionPaciente(models.Model):
             record.orientacion_od = diag_od['orientacion']
             record.formacion_focos_od = diag_od['formacion_focos']
             
-            # Diagnóstico OI
+           
             diag_oi = record._analizar_astigmatismo_ojo(
                 record.ojo_izquierdo_esfera, record.ojo_izquierdo_cilindro, record.ojo_izquierdo_eje, 'OI'
             )
@@ -164,31 +164,31 @@ class GraduacionPaciente(models.Model):
             record.orientacion_oi = diag_oi['orientacion']
             record.formacion_focos_oi = diag_oi['formacion_focos']
 
-    # ✅ SERIES AUTOMÁTICAS
+    
     @api.depends('ojo_derecho_esfera', 'ojo_derecho_cilindro', 'adicion',
                  'ojo_izquierdo_esfera', 'ojo_izquierdo_cilindro', 'adicion')
     def _compute_series_automaticas(self):
         """Determina las series automáticamente según los rangos"""
         for record in self:
-            # Serie para OD
+            
             serie_od = record._determinar_serie_ojo(
                 record.ojo_derecho_esfera, record.ojo_derecho_cilindro, record.adicion
             )
             record.serie_recomendada_od = serie_od
             
-            # Serie para OI
+           
             serie_oi = record._determinar_serie_ojo(
                 record.ojo_izquierdo_esfera, record.ojo_izquierdo_cilindro, record.adicion
             )
             record.serie_recomendada_oi = serie_oi
 
-    # ✅ TRANSPOSICIÓN AUTOMÁTICA
+   
     @api.depends('ojo_derecho_esfera', 'ojo_derecho_cilindro', 'ojo_derecho_eje',
                  'ojo_izquierdo_esfera', 'ojo_izquierdo_cilindro', 'ojo_izquierdo_eje')
     def _compute_transposicion(self):
         """Calcula la transposición de lentes"""
         for record in self:
-            # Transposición OD
+           
             trans_od = record._transponer_ojo(
                 record.ojo_derecho_esfera, record.ojo_derecho_cilindro, record.ojo_derecho_eje
             )
@@ -196,7 +196,7 @@ class GraduacionPaciente(models.Model):
             record.od_cilindro_trans = trans_od['cilindro']
             record.od_eje_trans = trans_od['eje']
             
-            # Transposición OI
+          
             trans_oi = record._transponer_ojo(
                 record.ojo_izquierdo_esfera, record.ojo_izquierdo_cilindro, record.ojo_izquierdo_eje
             )
@@ -204,7 +204,7 @@ class GraduacionPaciente(models.Model):
             record.oi_cilindro_trans = trans_oi['cilindro']
             record.oi_eje_trans = trans_oi['eje']
 
-    # ✅ MÉTODOS DE DIAGNÓSTICO
+   
     def _analizar_astigmatismo_ojo(self, esfera, cilindro, eje, lado):
         """Analiza el tipo de astigmatismo para un ojo"""
         if cilindro == 0:
@@ -229,7 +229,7 @@ class GraduacionPaciente(models.Model):
         abs_esfera = abs(esfera)
         abs_cilindro = abs(cilindro)
         
-        # ASTIGMATISMO HIPERMETRÓPICO SIMPLE (AHS)
+      
         if (esfera == 0 and cilindro > 0) or \
            (esfera > 0 and abs_esfera == abs_cilindro and cilindro < 0):
             return {
@@ -238,7 +238,7 @@ class GraduacionPaciente(models.Model):
                 'formacion_focos': 'Un foco en retina, otro detrás de retina'
             }
         
-        # ASTIGMATISMO MIÓPICO SIMPLE (AMS)
+       
         if (esfera == 0 and cilindro < 0) or \
            (esfera < 0 and abs_esfera == abs_cilindro and cilindro > 0):
             return {
@@ -247,7 +247,7 @@ class GraduacionPaciente(models.Model):
                 'formacion_focos': 'Un foco en retina, otro delante de retina'
             }
         
-        # ASTIGMATISMO HIPERMETRÓPICO COMPUESTO (AHC)
+       
         if esfera > 0 and (
             (cilindro > 0) or
             (cilindro < 0 and abs_cilindro < esfera)
@@ -258,7 +258,7 @@ class GraduacionPaciente(models.Model):
                 'formacion_focos': 'Ambos focos detrás de retina'
             }
         
-        # ASTIGMATISMO MIÓPICO COMPUESTO (AMC)
+        
         if esfera < 0 and (
             (cilindro < 0) or
             (cilindro > 0 and cilindro < abs_esfera)
@@ -269,7 +269,7 @@ class GraduacionPaciente(models.Model):
                 'formacion_focos': 'Ambos focos delante de retina'
             }
         
-        # ASTIGMATISMO MIXTO (AM)
+       
         if (esfera > 0 and cilindro < 0 and abs_cilindro > esfera) or \
            (esfera < 0 and cilindro > 0 and cilindro > abs_esfera):
             return {
@@ -334,7 +334,7 @@ class GraduacionPaciente(models.Model):
             'eje': nuevo_eje
         }
 
-    # ✅ ACCIONES ADICIONALES
+    
     def action_calcular_distancia_vertice(self):
         """Calcula la distancia al vértice para lentes de contacto"""
         self.ensure_one()
@@ -367,10 +367,10 @@ class GraduacionPaciente(models.Model):
     def _calcular_vertex_ojo(self, esfera, cilindro, eje, distancia=12):
         d_metros = distancia / 1000.0
         
-        # Calcular vertex para la esfera
+      
         esfera_contacto = self._calcular_potencia_vertex(esfera, d_metros)
         
-        # Calcular vertex para el cilindro (si existe)
+       
         cilindro_contacto = 0.0
         if cilindro != 0:
             potencia_esferica_equivalente = esfera + (cilindro / 2)
