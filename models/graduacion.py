@@ -433,10 +433,41 @@ class GraduacionPaciente(models.Model):
         
         return f"{meridiano1:.2f} x {eje1}° / {meridiano2:.2f} x {eje2}°"
 
+    def format_optical_value(self, value, decimals=2, show_positive=True):
+        """Formatea valores ópticos con signo positivo explícito."""
+        if value in (False, None, ""):
+            return "-"
+
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            return str(value)
+
+        if number > 0 and show_positive:
+            return f"+{number:.{decimals}f}"
+
+        return f"{number:.{decimals}f}"
+
+    def format_axis_value(self, value):
+        """Formatea eje sin signo y sin decimales."""
+        if value in (False, None, ""):
+            return "-"
+
+        try:
+            return str(int(float(value)))
+        except (TypeError, ValueError):
+            return str(value)
+
+    def format_visual_acuity(self, value):
+        """Formatea agudeza visual."""
+        if value in (False, None, ""):
+            return "-"
+        return str(value)
+
     def action_imprimir_historia_clinica(self):
         self.ensure_one()
         return self.env.ref('odoo_graduacion_paciente.action_report_graduacion_paciente').report_action(self)
-
+    
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     graduacion_ids = fields.One2many('optica.graduacion', 'paciente_id', string='Graduaciones')
