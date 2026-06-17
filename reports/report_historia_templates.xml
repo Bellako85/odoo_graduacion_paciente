@@ -177,6 +177,36 @@
                   </table>
                 </div>
 
+                <!-- ANÁLISIS OPTOMÉTRICO -->
+                <h3 class="section-title">🔎 Análisis Optométrico</h3>
+
+                <table class="table table-sm table-bordered table-custom">
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Ojo Derecho</th>
+                            <th>Ojo Izquierdo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-gray">
+                            <td><strong>Tipo de Astigmatismo</strong></td>
+                            <td><span t-esc="doc.diagnostico_od_detallado or '-'"/></td>
+                            <td><span t-esc="doc.diagnostico_oi_detallado or '-'"/></td>
+                        </tr>
+                        <tr class="row-white">
+                            <td><strong>Formación de Focos</strong></td>
+                            <td><span t-esc="doc.formacion_focos_od or '-'"/></td>
+                            <td><span t-esc="doc.formacion_focos_oi or '-'"/></td>
+                         </tr>
+                         <tr class="row-gray">
+                            <td><strong>Orientación del Eje</strong></td>
+                            <td><span t-esc="doc.orientacion_od or '-'"/></td>
+                            <td><span t-esc="doc.orientacion_oi or '-'"/></td>
+                          </tr>
+                    </tbody>
+                </table>
+
                 <!-- OBSERVACIONES - ESTILO SIMILAR -->
                 <div class="mt-3" t-if="doc.observaciones">
                   <p><strong>Observaciones:</strong></p>
