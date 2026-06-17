@@ -128,6 +128,7 @@
                       <td><span t-esc="doc.format_axis_value(doc.ojo_izquierdo_eje)"/></td>
                       <td><span t-esc="doc.format_optical_value(doc.adicion)"/></td>
                     </tr>
+                  </tbody>
                 </table>
 
                 <!-- AGUDEZA VISUAL - TABLA SIMILAR -->
