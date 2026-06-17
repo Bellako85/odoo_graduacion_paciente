@@ -185,7 +185,7 @@
 
                 <!-- PIE DE PÁGINA SIMILAR -->
                 <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #ecf0f1; text-align: center; color: #7f8c8d; font-size: 12px;">
-                   <p>Documento generado el<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/> • Óptica Zamora</p>
+                   <p>Documento generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/>  •  Óptica Zamora</p>
                 </div>
               </div>
             </div>
