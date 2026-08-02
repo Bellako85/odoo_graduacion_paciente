@@ -97,9 +97,8 @@ button.o_list_add:focus,
 
 .kanban-header-flow{
 
-    background:linear-gradient(135deg,#888888,#ffffff);
-
-    color:white;
+    
+    color:black;
 
     padding:18px;
 
