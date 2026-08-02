@@ -52,179 +52,314 @@ button.o_list_add:focus,
   box-shadow: 0 0 0 4px rgba(124,58,237,0.12), 0px 14px 32px rgba(0,0,0,0.22) !important;
 }
 
-/* ===== KANBAN FLOW VIOLENTO SIN BOTÓN ===== */
-.kanban-flow-violento {
-    min-height: 150px !important;
-    border: none !important;
-    border-radius: 18px !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-    background: linear-gradient(135deg, #b8bac2  0%, #f8fafc 100%) !important;
-    overflow: hidden !important;
-    margin-bottom: 12px !important;
-    cursor: pointer !important;
+/* ==========================================================
+   KANBAN NEUMORPHISM - GRADUACIONES
+   ========================================================== */
+
+.kanban-flow-violento{
+
+    background:#eef2f7 !important;
+
+    border-radius:22px !important;
+
+    border:none !important;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    transition:.28s ease;
+
+    box-shadow:
+        10px 10px 24px rgba(163,177,198,.45),
+        -10px -10px 24px rgba(255,255,255,.95);
+
+    animation:kanbanSlideIn .45s ease;
 }
 
-/* EFECTO HOVER EXPLOSIVO */
-.kanban-flow-violento:hover {
-    transform: translateY(-10px) scale(1.04) !important;
-    box-shadow: 0 30px 60px rgba(37, 99, 235, 0.35) !important;
-    border: 3px solid #2563eb !important;
+
+/* Hover */
+
+.kanban-flow-violento:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        18px 18px 32px rgba(163,177,198,.45),
+        -18px -18px 32px rgba(255,255,255,1);
+
 }
 
-/* FOOTER SIMPLE */
-.kanban-footer-flow {
-    padding: 12px 20px !important;
-    border-top: 1px solid #e2e8f0 !important;
-    text-align: center !important;
-    background: #f8fafc !important;
+
+/* ===========================================
+   HEADER
+   ===========================================*/
+
+.kanban-header-flow{
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    color:white;
+
+    padding:18px;
+
+    border-radius:22px 22px 0 0;
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
-.click-hint {
-    font-size: 11px !important;
-    color: #64748b !important;
-    font-style: italic !important;
+
+.kanban-header-flow:before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:120%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+
+    transition:.8s;
+
 }
 
-.kanban-flow-violento:hover .click-hint {
-    color: #2563eb !important;
-    font-weight: 600 !important;
+
+.kanban-flow-violento:hover .kanban-header-flow:before{
+
+    left:120%;
+
 }
 
-/* HEADER CON GRADIENTE ANIMADO */
-.kanban-header-flow {
-    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-    color: white !important;
-    padding: 20px !important;
-    position: relative !important;
-    overflow: hidden !important;
+
+.kanban-paciente{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    margin-bottom:6px;
+
 }
 
-.kanban-header-flow::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.8s ease;
+
+.kanban-fecha{
+
+    font-size:14px;
+
+    opacity:.90;
+
 }
 
-.kanban-flow-violento:hover .kanban-header-flow::before {
-    left: 100%;
+
+
+/* ===========================================
+   BODY
+   ===========================================*/
+
+.kanban-body-flow{
+
+    padding:14px;
+
 }
 
-.kanban-paciente {
-    font-weight: 800 !important;
-    font-size: 18px !important;
-    margin-bottom: 5px !important;
+
+/* ===========================================
+   OJOS
+   ===========================================*/
+
+.ojo-section{
+
+    margin-bottom:12px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:#eef2f7;
+
+    box-shadow:
+
+        inset 5px 5px 10px rgba(163,177,198,.35),
+
+        inset -5px -5px 10px rgba(255,255,255,.95);
+
 }
 
-.kanban-fecha {
-    font-size: 14px !important;
-    opacity: 0.9 !important;
+
+.ojo-derecho{
+
+    border-left:5px solid #2563eb;
+
 }
 
-/* CUERPO DE LA TARJETA */
-.kanban-body-flow {
-    padding: 12px !important;
+
+.ojo-izquierdo{
+
+    border-left:5px solid #7c3aed;
+
 }
 
-.ojo-section {
-    margin-bottom: 8px !important;
-    padding: 8px !important;
-    border-radius: 12px !important;
-    background: #f8fafc !important;
+
+.ojo-title{
+
+    font-weight:700;
+
+    color:#3b3b3b;
+
+    margin-bottom:10px;
+
 }
 
-.ojo-derecho {
-    border-left: 4px solid #2563eb !important;
+
+.ojo-datos{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+
 }
 
-.ojo-izquierdo {
-    border-left: 4px solid #7c3aed !important;
+
+.dato{
+
+    font-size:13px;
+
 }
 
-.ojo-title {
-    font-weight: 700 !important;
-    font-size: 12px !important;
-    margin-bottom: 5px !important;
+
+.dato span{
+
+    font-weight:700;
+
+    color:#475569;
+
 }
 
-.ojo-datos {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 5px !important;
-    font-size: 12px !important;
+
+
+/* ===========================================
+   INFORMACION ADICIONAL
+   ===========================================*/
+
+.info-adicional{
+
+    margin-top:12px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:#eef2f7;
+
+    box-shadow:
+
+        inset 4px 4px 8px rgba(163,177,198,.30),
+
+        inset -4px -4px 8px rgba(255,255,255,.95);
+
 }
 
-.dato span {
-    font-weight: 600 !important;
-    color: #475569 !important;
+
+.info-item{
+
+    margin-bottom:8px;
+
+    color:#4f46e5;
+
+    font-weight:600;
+
 }
 
-.info-adicional {
-    background: linear-gradient(135deg, #f3f0ff 0%, #e0e7ff 100%) !important;
-    padding: 15px !important;
-    border-radius: 12px !important;
-    font-size: 12px !important;
+
+
+/* ===========================================
+   FOOTER
+   ===========================================*/
+
+.kanban-footer-flow{
+
+    padding:14px;
+
+    text-align:center;
+
+    background:#eef2f7;
+
+    border-top:1px solid #dde3ea;
+
 }
 
-.info-item {
-    margin-bottom: 5px !important;
+
+.click-hint{
+
+    color:#64748b;
+
+    font-style:italic;
+
+    font-size:12px;
+
 }
 
-.info-item span {
-    font-weight: 600 !important;
-    color: #4f46e5 !important;
+
+.kanban-flow-violento:hover .click-hint{
+
+    color:#2563eb;
+
 }
 
-/* ANIMACIÓN DE ENTRADA */
-@keyframes kanbanSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.9);
+
+
+/* ===========================================
+   ENTRADA
+   ===========================================*/
+
+@keyframes kanbanSlideIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
     }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
     }
+
 }
 
-.kanban-flow-violento {
-    animation: kanbanSlideIn 0.6s ease-out !important;
-}
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .kanban-flow-violento {
-        min-height: 320px !important;
-        margin-bottom: 15px !important;
-    }
-    
-    .ojo-datos {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .kanban-body-flow {
-        padding: 15px !important;
-    }
-}
 
-/* ===== MEJORAS RESPONSIVE ===== */
-@media (max-width: 420px) {
-  /* Botones responsive */
-  .mi-btn { 
-    padding: 10px 14px !important; 
-    font-size: 14px !important; 
-    border-radius: 10px !important; 
-  }
-  
-  button.o_list_add,
-  .o_control_panel .btn-primary:not(.dropdown-toggle) {
-    padding: 10px 14px !important;
-    font-size: 14px !important;
-    border-radius: 10px !important;
-  }
+/* ===========================================
+   RESPONSIVE
+   ===========================================*/
+
+@media(max-width:768px){
+
+    .ojo-datos{
+
+        grid-template-columns:1fr;
+
+    }
+
 }
