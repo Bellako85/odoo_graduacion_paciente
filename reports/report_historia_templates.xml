@@ -212,7 +212,8 @@
                 <!-- OBSERVACIONES - ESTILO SIMILAR -->
                 <div class="mt-3" t-if="doc.observaciones">
                   <p><strong>Observaciones:</strong></p>
-                  <p t-esc="doc.observaciones"/>
+                  <div t-esc="doc.observaciones"
+                       style="white-space: pre-line; line-height: 1.6;"/>
                 </div>
 
                 <!-- PIE DE PÁGINA SIMILAR -->
