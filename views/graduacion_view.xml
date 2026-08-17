@@ -71,11 +71,8 @@
               </group>
 
               <!-- Observaciones - CON COLSPAN PARA ANCHO COMPLETO -->
-              <group colspan="2" string="Observaciones y Recomendaciones">
-                  <field name="observaciones" nolabel="1" 
-                    class="graduacion-field"
-                    placeholder="Escriba aquí las observaciones y recomendaciones para el paciente..."
-                    style="min-height: 120px; width: 100%;"/>
+              <group>
+                  <field name="observaciones" colspan="2"/>
               </group>
              </page> 
 
